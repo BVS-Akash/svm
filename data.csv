@@ -1,0 +1,18 @@
+Description ,Cost Center,GL Account
+Expense,12345,40003000
+Telephone expense for office staff,45678,30007000
+Stationary expense,12121,50005000
+Stationary expense for purchase department,34343,90004000
+Stationary expense for office headquarters,45454,20004000
+Transport,67676,10003000
+費用,12345,40003000
+事務員の電話代,45678,30007000
+固定費,12121,50005000
+購買部門の文具費,34343,90004000
+事務所本部の文具費,45454,20004000
+輸送,67676,10003000
+
+Dépense de téléphone pour le personnel de bureau,12345,40003000
+Dépense de fournitures de bureau,45678,30007000
+Dépense de fournitures de bureau pour le dépar...,12121,50005000
+Dépense de fournitures de bureau pour le siège...,34343,90004000
