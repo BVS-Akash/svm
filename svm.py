@@ -42,7 +42,7 @@ def svmmodel(description):
     l=[]
     j=0
     for i in anomaly_scores:
-        if i>0.77:
+        if i>0.78:
             output=[-1,-1]
         else:
             output=list(svm.predict(description_vector[j]))
