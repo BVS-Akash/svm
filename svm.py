@@ -6,9 +6,10 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import accuracy_score
 import os
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+from rapidfuzz import process
 
 
-df=pd.read_csv('data.csv')
+df=pd.read_csv('description_data.csv')
 
 japanese_stop_words = ['あの', 'いくつか', 'いつ', 'そして', 'その', 'たくさん', 'だから', 'とても', 'どうして', 'なぜ']
 arabic_stop_words = ['أنا', 'هو', 'في', 'من', 'على', 'إلى', 'هذا', 'الذي', 'الذين', 'إذا']
@@ -36,17 +37,18 @@ svm.fit(train_vectors, y_train)
 
 
 def svmmodel(description):
-    description_vector=tfdif.transform(description)
-    test_probabilities = svm.predict_proba(description_vector)
-    anomaly_scores = [1 - max(probs) for probs in test_probabilities]
-    l=[]
-    j=0
-    for i in anomaly_scores:
-        if i>0.78:
-            output=[-1,-1]
+    lowercase_list = [x.lower() for x in x_train]
+    output=[]
+    for i in description:
+        best_match, score ,_= process.extractOne(i,lowercase_list)
+        if score>70:
+            best_match_vector=tfdif.transform([best_match])
+            a=svm.predict(best_match_vector)
+            a=str(a)
+            a=list(a.split(','))
+            a[0]=a[0][2:]
+            a[1]=a[1][:len(a[1])-2]
+            output.append(a)
         else:
-            output=list(svm.predict(description_vector[j]))
-            output=list(output[0].split(','))
-        j=j+1
-        l.append(output)       
-    return l
+            output.append(['-1','-1'])   
+    return output

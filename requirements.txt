@@ -2,3 +2,5 @@ gunicorn
 Flask
 pandas
 scikit-learn
+rapidfuzz
+flask_cors
