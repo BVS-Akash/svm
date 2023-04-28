@@ -10,6 +10,11 @@ CORS(app)
 cf_port = os.getenv("PORT")
 
 
+@app.route('/')
+def home():
+    return " "
+
+
 @app.route('/submit',methods=['GET'])
 def submit():
     #flag=str(request.form['flag'])
