@@ -9,15 +9,15 @@ CORS(app)
 
 cf_port = os.getenv("PORT")
 
-@app.route('/')
-def index():
-    return render_template('index.html')
 
-@app.route('/submit',methods=['POST'])
+@app.route('/submit',methods=['GET'])
 def submit():
-    flag=str(request.form['flag'])
+    #flag=str(request.form['flag'])
+    # parser = reqparse.RequestParser()
+     # parser.add_argument('flag', required=True)
+    flag = request.args.get('flag')
     if flag=='1':
-        description=str(request.form["input_text"]).lower()
+        description=request.args.get('description').lower()
         description=list(description.split(','))
         output=svmmodel(description)
         jl=[]
