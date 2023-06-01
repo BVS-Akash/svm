@@ -37,7 +37,7 @@ def submit():
         ddr['results']=jl
         return jsonify(ddr)
     if flag=='2':
-        vendor_names=str(request.form["input_text"]).lower()
+        vendor_names=str(request.args.get("input_text")).lower()
         vendor_names=list(vendor_names.split(','))
         output=vendor_model(vendor_names)
         jl=[]
